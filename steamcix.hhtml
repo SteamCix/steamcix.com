@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyun Paneli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(100vh) translateX(30px); }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .welcome {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .panel {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            animation: slideIn 1.5s ease-in-out;
+            width: 100%;
+        }
+
+        .panel img {
+            width: 150px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #333;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        .price-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s ease;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .price-list.active {
+            max-height: 2000px;
+            overflow-y: auto;
+        }
+
+        .price-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .price-list li {
+            margin-bottom: 15px;
+        }
+
+        .discord {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #000;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .discord img {
+            width: 30px;
+        }
+
+        .discord:hover {
+            background-color: #222;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arka plan müziği -->
+    <audio autoplay loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+        Tarayıcınız ses çalmayı desteklemiyor.
+    </audio>
+
+    <!-- Kar efekti -->
+    <div class="snow" id="snowContainer"></div>
+
+    <div class="container">
+        <div class="welcome">Hoşgeldiniz - SteamCix Güvenli Oyun Alma Platformu</div>
+
+
+
+        <div class="panel">
+            <img src="https://i.hizliresim.com/ky6g3bl.jpg" alt="Logo">
+            <button class="button" onclick="togglePriceList()">Fiyatlar</button>
+
+            <div class="price-list" id="priceList">
+                <h3>🎮 Oyun Fiyat Listesi 🎮</h3>
+                <p>🛒 Uygun fiyatlarla popüler oyunlar burada! Güncel fiyatlarımız aşağıdadır:</p>
+                <strong>Mevcut Oyunlar:</strong>
+                <ul>
+                    <li>🧟‍♂️ The Last of Us Part I – 350 TL</li>
+                    <li>🧟‍♂️ The Last of Us Part II – 350 TL</li>
+                    <li>🤠 Red Dead Redemption 2 – 250 TL</li>
+                </ul>
+                <strong>Diğer Popüler Oyunlar:</strong>
+                <ul>
+                    <li>⚔️ God of War Ragnarök – 600 TL</li>
+                    <li>🕷️ Spider-Man: Miles Morales – 450 TL</li>
+                    <li>🗡️ Elden Ring – 500 TL</li>
+                    <li>🧙‍♂️ Hogwarts Legacy – 600 TL</li>
+                    <li>🗡️ Assassin’s Creed Mirage – 500 TL</li>
+                    <li>🔫 Call of Duty: Modern Warfare III – 650 TL</li>
+                    <li>🦾 Cyberpunk 2077 – 350 TL</li>
+                    <li>⚽ FIFA 24 – 450 TL</li>
+                    <li>👹 Resident Evil 4 Remake – 500 TL</li>
+                    <li>🚗 GTA V: Premium Edition – 145 TL</li>
+                    <li>🕸️ Marvel’s Spider-Man Remastered – 450 TL</li>
+                    <li>✨ Star Wars Jedi: Survivor – 600 TL</li>
+                    <li>🗡️ Ghost of Tsushima: Director’s Cut – 550 TL</li>
+                </ul>
+                <p>📩 Sipariş ve detaylı bilgi için bana DM atabilirsiniz!</p>
+            </div>
+
+            <a class="discord" href="https://discord.gg/satis" target="_blank">
+                <img src="https://i.hizliresim.com/50wat7h.jpg" alt="Discord">
+                Discord
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function togglePriceList() {
+            var list = document.getElementById("priceList");
+            list.classList.toggle("active");
+
+            if (list.classList.contains("active")) {
+                list.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        function createSnowflake() {
+            const snowContainer = document.getElementById('snowContainer');
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.width = snowflake.style.height = (Math.random() * 5 + 3) + 'px';
+
+            snowContainer.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 10000);
+        }
+
+        setInterval(createSnowflake, 200);
+    </script>
+
+</body>
+</html>
